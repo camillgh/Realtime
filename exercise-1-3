@@ -1,0 +1,50 @@
+Part 1:
+
+What is concurrency? What is parallelism? What's the difference?
+Concurrency happens when there are multiple tasks running (in progress), but only one of them is being executed at any given moment. No two or multiple tasks could be executed at the same time. This happens when you only have 1 core. Parallelism is when multiple tasks go from start to completion in the exact same time, and every task is executed at the same time (if there are enough cores for the tasks). You have to use multiple cores in your processor to do this.
+
+
+Why have machines become increasingly multicore in the past decade?
+Multiple cores means executing multiple processes at the same time and reducing time spent to solve a task. It has lead to faster and more capable, user-friendly machines. It also supports multithreading.
+
+
+What kinds of problems motivates the need for concurrent execution?
+A parallel execution only has efficiency in mind, whereas concurrency deals with structuring a program that deals with multiple independent tasks, such as dealing with input and output from the user. It can have multiple distinct threads, for instance one that interacts with the user and one other for computing.
+A concrete example could be the user interacting with an application while other tasks are running, like sending an email while a file is downloading.
+
+
+Does creating concurrent programs make the programmer's life easier? Harder? Maybe both?
+A thing that will be hard to deal with is deadlocking, where tasks are suspended and they have to wait for each other indefinitely.
+Another hard thing is that while waiting on its turn, an activity can’t react to other events, or use a resource that another thread is using or holding up.
+A third hard thing is that context-switching and threads could be expensive.
+A fourth hard thing is that the programmer has to assure that each task is atomic when processed.
+A good thing is the result of Gustafson’s law.
+Another good thing is that concurrency uses the time that could be used for waiting for I/O operations to finish, to instead run another task in the meantime.
+
+
+What are the differences between processes, threads, green threads, and coroutines?
+Processes and threads are OS-managed, while green threads and coroutines are not. 
+Processes and threads are also possibly truly concurrent, whereas green threads are probably not truly concurrent (interleaved or multiplexed) and coroutines are not truly concurrent.
+Processes exist within their own address space.
+Threads are within the same address space as their parent and the other threads its connected to, and can take advantage of multiple cores.
+Green threads has the same address system as threads, but cannot take advantage of multi-core processors.
+Coroutines are threads, except that it uses coop multitasking, and thus isn’t truly concurrent.
+
+
+Which one of these do pthread_create() (C/POSIX), threading.Thread() (Python), go (Go) create?
+pthread_create() (C/POSIX) creates a ne thread within a process.
+threading.Thread() (Python) creates a thread.
+go (Go) creates a coroutine
+
+
+How does pythons Global Interpreter Lock (GIL) influence the way a python Thread behaves?
+It allows only one thread to hold the control of the Python interpreter, thus only one thread can be executed at any point in time.
+
+
+With this in mind: What is the workaround for the GIL (Hint: it's another module)?
+One can use the multiprocessing module in Python!
+
+
+What does func GOMAXPROCS(n int) int change?
+It sets the maximum number of CPUs that can be in a state of execution at the same time and returns the previous setting. 
+If n < 1, it does not change the current setting. 
