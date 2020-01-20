@@ -32,6 +32,7 @@ A critical section could access a shared resource that wouldn't have performed c
 
 
 
+
 What is the difference between race conditions and data races?
 
 Race conditions are the situations that occur when the result of a task depends on the
@@ -49,11 +50,12 @@ Hasn't the concurrency issues that will happen with parallell lock-based syncron
 
 
 
+
 List some advantages of using lock-based synchronization primitives over message passing.
 
 message passing is useful for exchanging smaller amounts of data, because no conflicts need be avoided. It's much easier to implement than is shared memory for intercomputer communication. Also, as you've already noticed, message passing has the advantage that application developers don't need to worry about the details of protections like shared memory.
 
-Shared memory allows maximum speed and convenience of communication, as it can be done at memory speeds when within a computer. Shared memory is usually faster than message passing, as message-passing are typically implemented using system calls and thus require the more time-consuming tasks of kernel intervention. In contrast, in shared-memory systems, system calls are required only to establish shared-memory regions. Once established, all access are treated as normal memory accesses w/o extra assistance from the kernel.
+Shared memory allows m-aximum speed and convenience of communication, as it can be done at memory speeds when within a computer. Shared memory is usually faster than message passing, as message-passing are typically implemented using system calls and thus require the more time-consuming tasks of kernel intervention. In contrast, in shared-memory systems, system calls are required only to establish shared-memory regions. Once established, all access are treated as normal memory accesses w/o extra assistance from the kernel.
 
 
 It's a pretty simple difference. In a shared memory model, multiple workers all operate on the same data. This opens up a lot of the concurrency issues that are common in parallel programming.
